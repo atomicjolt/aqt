@@ -1,4 +1,4 @@
-# LTI Starter App [![Build Status](https://travis-ci.org/atomicjolt/lti_starter_app.svg?branch=master)](https://travis-ci.org/atomicjolt/lti_starter_app) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/lti_starter_app/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/lti_starter_app?branch=master)
+# Aqt [![Build Status](https://travis-ci.org/atomicjolt/aqt.svg?branch=master)](https://travis-ci.org/atomicjolt/aqt) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/aqt/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/aqt?branch=master)
 -----------------------
 There are many starter kits that will help you get started with React and Redux.
 This is the one created by, maintained by and used by [Atomic Jolt](http://www.atomicjolt.com).
@@ -9,10 +9,10 @@ utilize React.
 
 ## Getting Started
 
-### Build a new application using the LTI Starter App Rails application template:
+### Build a new application using the Aqt Rails application template:
 -----------
 ```
-rails new my_app -m https://raw.githubusercontent.com/atomicjolt/lti_starter_app/master/template.rb
+rails new my_app -m https://raw.githubusercontent.com/atomicjolt/aqt/master/template.rb
 ```
 
 ### Prerequisites
@@ -32,16 +32,16 @@ You will need to [obtain a Developer ID and Key from an Account Admin for the in
 You will also need to setup a default lti application and lti application instance. See the [sections below](#setup) for information on setting up the default account.
 
 
-## Running LTI Starter App
+## Running Aqt
 
-After [setting up the LTI Starter App](#setup), start Rails and the webpack server:
+After [setting up the Aqt](#setup), start Rails and the webpack server:
 ```
   rails server
   yarn hot
 ```
 
 
-## <a name="setup"></a>Setting up LTI Starter App
+## <a name="setup"></a>Setting up Aqt
 
 ### File Modifications
 -----------
@@ -52,16 +52,16 @@ Rename `.env.example` to `.env` and configure it to your liking.
 Note: the App and Assets subdomains must be different.
 
 #### Modify application name
-1. Open application.rb and change `ltistarterapp` to the name you choose.
-2. Do a global search and replace for `lti_starter_app` and change it to the name you choose.
-3. Do a global search and replace for `ltistarterapp` (use only letters or numbers for this name. Special characters like '_' will result in errors).
+1. Open application.rb and change `Aqt` to the name you choose.
+2. Do a global search and replace for `aqt` and change it to the name you choose.
+3. Do a global search and replace for `Aqt` (use only letters or numbers for this name. Special characters like '_' will result in errors).
 
 #### Setup config files with bin/setup script (optional)
 
 ##### Change bin/bootstrap
 In bin/bootstrap change the following line to point to a dropbox folder containing the correct config files for the project. For example:
 ```
-DROPBOX_FOLDER=aj-dev/lti_starter_app
+DROPBOX_FOLDER=aj-dev/aqt
 ```
 
 ##### Setup script
@@ -100,30 +100,30 @@ applications on a single domain. By default this will be set to APP_SUBDOMAIN fr
 
 ### <a name="canvas_developer_key"></a>Obtain a Canvas Developer Key
 -----------
-Only a Canvas Account Admin can create a developer key for your LTI Application. To create a key, go to Accounts, Developer Keys and enter the info described below below. Be sure to replace `ltistarterapp.atomicjolt.xyz` with your domain. (atomicjolt.xyz will only work for AtomicJolt employees). Also, note that 'ltistarterapp' is the subdomain specified in the .env file.
+Only a Canvas Account Admin can create a developer key for your LTI Application. To create a key, go to Accounts, Developer Keys and enter the info described below below. Be sure to replace `Aqt.atomicjolt.xyz` with your domain. (atomicjolt.xyz will only work for AtomicJolt employees). Also, note that 'Aqt' is the subdomain specified in the .env file.
 
-You will need an ID and secret for development and for production. The development URI will use atomicjolt.xyz while the production URI will use your domain (e.g. ltistarterapp.herokuapp.com).
+You will need an ID and secret for development and for production. The development URI will use atomicjolt.xyz while the production URI will use your domain (e.g. Aqt.herokuapp.com).
 
 **Oauth2 Redirect URI:**
-https://ltistarterapp.atomicjolt.xyz/auth/[provider]/callback
+https://Aqt.atomicjolt.xyz/auth/[provider]/callback
 **Key Name:**
-Can be anything you choose (e.g. LTI Starter App)
+Can be anything you choose (e.g. Aqt)
 
 **Owner Email:***
 Address that will receive email about technical issues related to the tool.
 
 **Tool ID:**
-Unique ID for the tool (e.g. ltistarterapp)
+Unique ID for the tool (e.g. Aqt)
 
 **Redirect URI:**
-https://ltistarterapp.atomicjolt.xyz/users/auth/canvas/callback
+https://Aqt.atomicjolt.xyz/users/auth/canvas/callback
 OR
-https://ltistarterapp.herokuapp.com/users/auth/canvas/callback
+https://Aqt.herokuapp.com/users/auth/canvas/callback
 
 **Icon URL:**
-https://ltistarterapp.atomicjolt.xyz/images/icon.png
+https://Aqt.atomicjolt.xyz/images/icon.png
 OR
-https://ltistarterapp.herokuapp.com/images/icon.png
+https://Aqt.herokuapp.com/images/icon.png
 
 Once you press Save Key, a Developer ID and Key will be generated and displayed in the Details column of the Developer Keys table when you mouse over the row. Add these credentials to your .env file or `config/secrets.yml` file under CANVAS_DEVELOPER_ID and CANVAS_DEVELOPER_KEY (in .env) or `canvas_developer_id` and `canvas_developer_key` (in secrets.yml).
 
@@ -182,7 +182,7 @@ will calculate one for you.
 Example options.json
 `
 {
-  "outName": "hello_world",
+  "outName": "aqt",
   "port": 8080,
   "onlyPack": true,
   "noClean": false,

@@ -39,7 +39,7 @@ class Api::GraphqlController < Api::ApiApplicationController
       current_host: request.host,
       canvas_api: canvas_api_proc,
     }
-    result = HelloWorldSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = AqtSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end
 

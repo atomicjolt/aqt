@@ -15,7 +15,7 @@ NuclearSecrets.configure do |config|
     canvas_developer_key: String,
     auth0_client_id: String,
     auth0_client_secret: String,
-    hello_world_lti_secret: String,
+    aqt_lti_secret: String,
     admin_lti_secret: String,
     secret_key_base: String,
     secret_token: String,

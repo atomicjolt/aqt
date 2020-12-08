@@ -135,7 +135,7 @@ RSpec.describe ApplicationInstance, type: :model do
 
     it "generates the lti xml config" do
       lti_config = {
-        title: "LTI Starter App",
+        title: "Aqt",
         description: "The Atomic Jolt LTI Starter app",
         privacy_level: "public",
         icon: "oauth_icon.png",
@@ -155,7 +155,7 @@ RSpec.describe ApplicationInstance, type: :model do
 
     it "generates the lti xml config with privacy_level anonymous" do
       lti_config = {
-        title: "LTI Starter App",
+        title: "Aqt",
         description: "The Atomic Jolt LTI Starter app",
         privacy_level: "public",
         icon: "oauth_icon.png",

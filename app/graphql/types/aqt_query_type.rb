@@ -1,6 +1,6 @@
-class Types::HelloWorldQueryType < Types::BaseObject
+class Types::AqtQueryType < Types::BaseObject
   field :welcome_message, String, null: true do
-    description "Get the Hello World welcome message"
+    description "Get the Aqt welcome message"
     argument :name, String, required: true
   end
 

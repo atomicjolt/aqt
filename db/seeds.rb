@@ -59,14 +59,14 @@ admin_api_permissions = {
 
 bundles = [
   {
-    name: "Hello World",
-    key: Application::HELLOWORLD,
-    applications: [Application::HELLOWORLD],
+    name: "Aqt",
+    key: Application::AQT,
+    applications: [Application::AQT],
     shared_tenant: true,
   },
 ]
 
-hello_lti_advantage_config = JSON.parse(File.read(File.join(Rails.root, "db", "lti_advantage_configs", "hello_world_lti_advantage_config.json")))
+hello_lti_advantage_config = JSON.parse(File.read(File.join(Rails.root, "db", "lti_advantage_configs", "aqt_lti_advantage_config.json")))
 
 # Add an LTI Application
 applications = [
@@ -86,10 +86,10 @@ applications = [
     }],
   },
   {
-    key: Application::HELLOWORLD,
-    name: "LTI Starter App",
-    description: "LTI Starter App by Atomic Jolt.",
-    client_application_name: "hello_world_graphql",
+    key: Application::AQT,
+    name: "Aqt",
+    description: "Aqt by Atomic Jolt.",
+    client_application_name: "aqt_graphql",
     lti_advantage_config: hello_lti_advantage_config,
     # List Canvas API methods the app is allowed to use. A full list of constants can be found in canvas_urls
     canvas_api_permissions: {
@@ -118,7 +118,7 @@ applications = [
     },
     default_config: {},
     lti_config: {
-      title: "LTI Starter App",
+      title: "Aqt",
       description: "The Atomic Jolt LTI Starter app",
       privacy_level: "public",
       icon: "oauth_icon.png",
@@ -128,19 +128,19 @@ applications = [
         canvas_user_id: "$Canvas.user.id",
       },
       course_navigation: {
-        text: "LTI Starter App",
+        text: "Aqt",
         visibility: "public",
       },
       editor_button: {
-        text: "LTI Starter App",
+        text: "Aqt",
         visibility: "admins",
         icon_url: "atomicjolt.png",
       },
       assignment_selection: {
-        text: "LTI Starter App",
+        text: "Aqt",
       },
       link_selection: {
-        text: "LTI Starter App",
+        text: "Aqt",
       },
       content_migration: true,
     },
@@ -190,7 +190,7 @@ applications = [
     application_instances: [
       {
         # Canvas
-        lti_secret: Rails.env.production? ? nil : secrets.hello_world_lti_secret,
+        lti_secret: Rails.env.production? ? nil : secrets.aqt_lti_secret,
         site_url: secrets.canvas_url,
         # This is only required if the app needs API access and doesn't want each user to do the oauth dance
         canvas_token: secrets.canvas_token,
