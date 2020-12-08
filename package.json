@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React Starter App with Rails. Uses webpacker.",
   "author": "atomicjolt",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "homepage": "https://github.com/atomicjolt/react_rails_starter_app",
   "scripts": {
     "test": "jest --config package.json",
