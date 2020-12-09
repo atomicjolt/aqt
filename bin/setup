@@ -11,6 +11,10 @@ if [ ! -f .env ]; then
     exit 1
 fi
 
+if ! git remote | grep -q canvas; then
+    git remote add canvas git@github.com:instructure/canvas-lms
+fi
+
 set -a
 source .env
 set +a
