@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+CANVAS_TARGET_VERSION="release/2020-11-18.29"
+
+git checkout "$CANVAS_TARGET_VERSION" -- "$@"
+
+echo "Files added successfully, commit them before modifying"

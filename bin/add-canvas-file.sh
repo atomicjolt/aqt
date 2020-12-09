@@ -1,6 +1,0 @@
-#!/bin/bash
-CANVAS_TARGET_VERSION="release/2020-11-18.29"
-
-CANVAS_FILE="$1"
-
-git checkout "$CANVAS_TARGET_VERSION" -- "$CANVAS_FILE"
