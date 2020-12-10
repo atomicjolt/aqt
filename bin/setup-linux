@@ -14,6 +14,7 @@ fi
 
 if ! git remote | grep -q canvas; then
     git remote add canvas git@github.com:instructure/canvas-lms
+    git fetch canvas
 fi
 
 set -a

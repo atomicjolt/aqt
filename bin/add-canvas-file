@@ -4,4 +4,12 @@ CANVAS_TARGET_VERSION="release/2020-11-18.29"
 
 git checkout "$CANVAS_TARGET_VERSION" -- "$@"
 
+for file in "$@"
+do
+    echo "$file $CANVAS_TARGET_VERSION" >> canvas-files
+done
+
+sort -o canvas-files canvas-files
+git add canvas-files
+
 echo "Files added successfully, commit them before modifying"
