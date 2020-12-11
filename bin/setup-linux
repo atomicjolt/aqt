@@ -12,13 +12,14 @@ if [ ! -f .env ]; then
     exit 1
 fi
 
+if ! git remote | grep -q canvas; then
+    git remote add canvas git@github.com:instructure/canvas-lms
+    git fetch canvas
+fi
+
 set -a
 source .env
 set +a
-
-echo "Run bin/bootstrap separately, not using sudo"
-# Bootstrap the site - sets up symlinks to database.yml, etc. Be sure to set the correct dropbox folder in bootstrap first.
-# bin/bootstrap
 
 # Create config file for the app / site.
 cat > "/etc/nginx/sites-available/${APP_SUBDOMAIN}.conf" <<-EOF

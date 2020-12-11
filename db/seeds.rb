@@ -74,7 +74,7 @@ applications = [
     key: Application::ADMIN,
     name: "LTI Admin",
     description: "LTI tool administration",
-    client_application_name: "admin_app",
+    client_application_name: "admin",
     canvas_api_permissions: admin_api_permissions,
     kind: Application.kinds[:admin],
     default_config: {},

@@ -1,19 +1,9 @@
-# Aqt [![Build Status](https://travis-ci.org/atomicjolt/aqt.svg?branch=master)](https://travis-ci.org/atomicjolt/aqt) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/aqt/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/aqt?branch=master)
+# AQT [![Build Status](https://travis-ci.org/atomicjolt/aqt.svg?branch=master)](https://travis-ci.org/atomicjolt/aqt) [![Coverage Status](https://coveralls.io/repos/github/atomicjolt/aqt/badge.svg?branch=master)](https://coveralls.io/github/atomicjolt/aqt?branch=master)
 -----------------------
-There are many starter kits that will help you get started with React and Redux.
-This is the one created by, maintained by and used by [Atomic Jolt](http://www.atomicjolt.com).
-Atomic Jolt uses this as application as a starting place for Ruby on Rails applications that
-utilize React.
-
+This is a re-implementation of the legacy Canvas quiz system as an LTI tool.
 
 
 ## Getting Started
-
-### Build a new application using the Aqt Rails application template:
------------
-```
-rails new my_app -m https://raw.githubusercontent.com/atomicjolt/aqt/master/template.rb
-```
 
 ### Prerequisites
 -----------
@@ -21,7 +11,7 @@ This application requires:
 
 -   Ruby
 -   Rails ([Info / Installation](http://railsapps.github.io/installing-rails.html))
--   PostGreSQL ([Info / Installation](https://wiki.postgresql.org/wiki/Detailed_installation_guides))
+-   PostgreSQL ([Info / Installation](https://wiki.postgresql.org/wiki/Detailed_installation_guides))
 -   NodeJS  ([Info / Installation](https://github.com/creationix/nvm))
 -   yarn ([Info / Installation](https://yarnpkg.com/lang/en/docs/install))
 

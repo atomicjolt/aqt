@@ -28,7 +28,7 @@ class Application < ApplicationRecord
   # app: Stand alone applications that don't require an lti launch
   enum kind: %i{lti admin app}
 
-  ADMIN = "admin".freeze
+  ADMIN = "aqtadmin".freeze
   AUTH = "auth".freeze
   AQT = "aqt".freeze
 
