@@ -1,0 +1,7 @@
+app/models/quizzes/quiz.rb release/2020-11-18.29
+gems/workflow/Gemfile release/2020-11-18.29
+gems/workflow/lib/workflow.rb release/2020-11-18.29
+gems/workflow/workflow.gemspec release/2020-11-18.29
+lib/canvas/draft_state_validations.rb release/2020-11-18.29
+lib/locked_for.rb release/2020-11-18.29
+lib/search_term_helper.rb release/2020-11-18.29
