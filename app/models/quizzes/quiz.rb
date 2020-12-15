@@ -20,18 +20,24 @@
 require 'canvas/draft_state_validations'
 
 class Quizzes::Quiz < ActiveRecord::Base
-  extend RootAccountResolver
+  # disabling for now
+  # extend RootAccountResolver
   self.table_name = 'quizzes'
 
   include Workflow
-  include HasContentTags
-  include CopyAuthorizedLinks
+  # disabling for now
+  # include HasContentTags
+  # disabling for now
+  # include CopyAuthorizedLinks
   include ActionView::Helpers::SanitizeHelper
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
-  include ContextModuleItem
-  include DatesOverridable
+  # disabling for now
+  # include ContextModuleItem
+  # disabling for now
+  # include DatesOverridable
   include SearchTermHelper
-  include Plannable
+  # disabling for now
+  # include Plannable
   include Canvas::DraftStateValidations
   include LockedFor
 
