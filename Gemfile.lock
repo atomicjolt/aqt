@@ -16,6 +16,12 @@ GIT
       rugged (>= 0.23.0, < 1.1.0)
       thor (>= 0.20.3, < 2.0)
 
+PATH
+  remote: gems
+  specs:
+    workflow (0.0.1)
+      rails (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -517,6 +523,7 @@ DEPENDENCIES
   webmock
   webpacker
   will_paginate
+  workflow!
   yajl-ruby
 
 BUNDLED WITH
