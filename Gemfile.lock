@@ -19,6 +19,8 @@ GIT
 PATH
   remote: gems
   specs:
+    canvas_sanitize (0.0.1)
+      sanitize (= 2.1.1)
     workflow (0.0.1)
       rails (>= 3.2)
 
@@ -375,6 +377,8 @@ GEM
     rubyzip (2.3.0)
     rugged (1.0.1)
     safe_yaml (1.0.5)
+    sanitize (2.1.1)
+      nokogiri (>= 1.4.4)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -457,6 +461,7 @@ DEPENDENCIES
   bootsnap
   byebug
   cancancan
+  canvas_sanitize!
   capybara
   composite_primary_keys
   database_cleaner
