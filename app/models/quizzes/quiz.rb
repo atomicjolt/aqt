@@ -79,12 +79,17 @@ class Quizzes::Quiz < ActiveRecord::Base
 
   before_save :generate_quiz_data_on_publish, :if => :workflow_state_changed?
   before_save :build_assignment
-  before_save :set_defaults
-  after_save :update_assignment
+
+  # disabling for now - whole block
+  # before_save :set_defaults
+  # after_save :update_assignment
+
   before_save :check_if_needs_availability_cache_clear
   after_save :clear_availability_cache
-  after_save :touch_context
-  after_save :regrade_if_published
+
+  # disabling for now - whole block
+  # after_save :touch_context
+  # after_save :regrade_if_published
 
   serialize :quiz_data
 
