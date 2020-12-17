@@ -678,6 +678,80 @@ ALTER SEQUENCE public.que_jobs_job_id_seq OWNED BY public.que_jobs.job_id;
 
 
 --
+-- Name: quizzes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quizzes (
+    id bigint NOT NULL,
+    title character varying,
+    description text,
+    quiz_data text,
+    points_possible double precision,
+    context_id bigint NOT NULL,
+    context_type character varying NOT NULL,
+    assignment_id bigint,
+    workflow_state character varying NOT NULL,
+    shuffle_answers boolean DEFAULT false NOT NULL,
+    show_correct_answers boolean DEFAULT true NOT NULL,
+    time_limit integer,
+    allowed_attempts integer,
+    scoring_policy character varying,
+    quiz_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    lock_at timestamp without time zone,
+    unlock_at timestamp without time zone,
+    deleted_at timestamp without time zone,
+    could_be_locked boolean DEFAULT false NOT NULL,
+    cloned_item_id bigint,
+    access_code character varying,
+    migration_id character varying,
+    unpublished_question_count integer DEFAULT 0,
+    due_at timestamp without time zone,
+    question_count integer,
+    last_assignment_id bigint,
+    published_at timestamp without time zone,
+    last_edited_at timestamp without time zone,
+    anonymous_submissions boolean DEFAULT false NOT NULL,
+    assignment_group_id bigint,
+    hide_results character varying,
+    ip_filter character varying,
+    require_lockdown_browser boolean DEFAULT false NOT NULL,
+    require_lockdown_browser_for_results boolean DEFAULT false NOT NULL,
+    one_question_at_a_time boolean DEFAULT false NOT NULL,
+    cant_go_back boolean DEFAULT false NOT NULL,
+    show_correct_answers_at timestamp without time zone,
+    hide_correct_answers_at timestamp without time zone,
+    require_lockdown_browser_monitor boolean DEFAULT false NOT NULL,
+    lockdown_browser_monitor_data text,
+    only_visible_to_overrides boolean DEFAULT false NOT NULL,
+    one_time_results boolean DEFAULT false NOT NULL,
+    show_correct_answers_last_attempt boolean DEFAULT false NOT NULL,
+    root_account_id bigint,
+    disable_timer_autosubmission boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quizzes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quizzes_id_seq OWNED BY public.quizzes.id;
+
+
+--
 -- Name: request_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -963,6 +1037,13 @@ ALTER TABLE ONLY public.que_jobs ALTER COLUMN job_id SET DEFAULT nextval('public
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY public.quizzes ALTER COLUMN id SET DEFAULT nextval('public.quizzes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
 
 
@@ -1130,6 +1211,14 @@ ALTER TABLE ONLY public.permissions
 
 ALTER TABLE ONLY public.que_jobs
     ADD CONSTRAINT que_jobs_pkey PRIMARY KEY (queue, priority, run_at, job_id);
+
+
+--
+-- Name: quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quizzes
+    ADD CONSTRAINT quizzes_pkey PRIMARY KEY (id);
 
 
 --
@@ -1548,6 +1637,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200219210631'),
 ('20200226194920'),
 ('20200624153201'),
-('20200914195556');
+('20200914195556'),
+('20201217183552');
 
 
