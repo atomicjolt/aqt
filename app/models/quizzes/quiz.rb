@@ -71,7 +71,8 @@ class Quizzes::Quiz < ActiveRecord::Base
       quiz.hide_correct_answers_at_changed?
   }
   sanitize_field :description, CanvasSanitize::SANITIZE
-  copy_authorized_links(:description) { [self.context, nil] }
+  # disabling for now
+  # copy_authorized_links(:description) { [self.context, nil] }
 
   before_save :generate_quiz_data_on_publish, :if => :workflow_state_changed?
   before_save :build_assignment
@@ -84,7 +85,8 @@ class Quizzes::Quiz < ActiveRecord::Base
 
   serialize :quiz_data
 
-  simply_versioned
+  # disabling for now
+  # simply_versioned
 
   has_many :context_module_tags, -> { where("content_tags.tag_type='context_module' AND content_tags.workflow_state<>'deleted'")}, as: :content, inverse_of: :content, class_name: 'ContentTag'
 
@@ -97,19 +99,21 @@ class Quizzes::Quiz < ActiveRecord::Base
   # simply_versioned callback updating the version.
   after_save :link_assignment_overrides, :if => :new_assignment_id?
 
-  resolves_root_account through: :context
+  # disabling for now
+  # resolves_root_account through: :context
 
-  include MasterCourses::Restrictor
-  restrict_columns :content, [:title, :description]
-  restrict_columns :settings, [
-    :quiz_type, :assignment_group_id, :shuffle_answers, :time_limit, :disable_timer_autosubmission,
-    :anonymous_submissions, :scoring_policy, :allowed_attempts, :hide_results,
-    :one_time_results, :show_correct_answers, :show_correct_answers_last_attempt,
-    :show_correct_answers_at, :hide_correct_answers_at, :one_question_at_a_time,
-    :cant_go_back, :access_code, :ip_filter, :require_lockdown_browser, :require_lockdown_browser_for_results
-  ]
-  restrict_assignment_columns
-  restrict_columns :state, [:workflow_state]
+  # disabling for now - the whole block
+  # include MasterCourses::Restrictor
+  # restrict_columns :content, [:title, :description]
+  # restrict_columns :settings, [
+  #   :quiz_type, :assignment_group_id, :shuffle_answers, :time_limit, :disable_timer_autosubmission,
+  #   :anonymous_submissions, :scoring_policy, :allowed_attempts, :hide_results,
+  #   :one_time_results, :show_correct_answers, :show_correct_answers_last_attempt,
+  #   :show_correct_answers_at, :hide_correct_answers_at, :one_question_at_a_time,
+  #   :cant_go_back, :access_code, :ip_filter, :require_lockdown_browser, :require_lockdown_browser_for_results
+  # ]
+  # restrict_assignment_columns
+  # restrict_columns :state, [:workflow_state]
 
   # override has_one relationship provided by simply_versioned
   def current_version_unidirectional
@@ -1051,6 +1055,7 @@ class Quizzes::Quiz < ActiveRecord::Base
     [:access_code]
   end
 
+  # set_policy is a no-op for now
   set_policy do
     given { |user, session| self.context.grants_right?(user, session, :manage_assignments) } #admins.include? user }
     can :manage and can :read and can :update and can :create and can :submit and can :preview
