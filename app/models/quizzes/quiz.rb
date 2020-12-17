@@ -52,10 +52,13 @@ class Quizzes::Quiz < ActiveRecord::Base
   has_many :attachments, :as => :context, :inverse_of => :context, :dependent => :destroy
   has_many :quiz_regrades, class_name: 'Quizzes::QuizRegrade'
   has_many :quiz_student_visibilities
-  belongs_to :context, polymorphic: [:course]
-  belongs_to :assignment
-  belongs_to :assignment_group
-  belongs_to :root_account, class_name: 'Account'
+
+  # disabling for now - whole block
+  # belongs_to :context, polymorphic: [:course]
+  # belongs_to :assignment
+  # belongs_to :assignment_group
+  # belongs_to :root_account, class_name: 'Account'
+
   has_many :ignores, :as => :asset
 
   validates_length_of :description, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
