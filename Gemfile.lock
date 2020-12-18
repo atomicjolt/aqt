@@ -19,6 +19,7 @@ GIT
 PATH
   remote: gems
   specs:
+    canvas_crummy (0.0.1)
     canvas_sanitize (0.0.1)
       sanitize (= 2.1.1)
     workflow (0.0.1)
@@ -461,6 +462,7 @@ DEPENDENCIES
   bootsnap
   byebug
   cancancan
+  canvas_crummy!
   canvas_sanitize!
   capybara
   composite_primary_keys
