@@ -678,6 +678,46 @@ ALTER SEQUENCE public.que_jobs_job_id_seq OWNED BY public.que_jobs.job_id;
 
 
 --
+-- Name: quiz_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quiz_questions (
+    id bigint NOT NULL,
+    quiz_id bigint,
+    quiz_group_id bigint,
+    assessment_question_id bigint,
+    question_data text,
+    assessment_question_version integer,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migration_id character varying,
+    workflow_state character varying,
+    duplicate_index integer,
+    root_account_id bigint
+);
+
+
+--
+-- Name: quiz_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quiz_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quiz_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quiz_questions_id_seq OWNED BY public.quiz_questions.id;
+
+
+--
 -- Name: quizzes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1037,6 +1077,13 @@ ALTER TABLE ONLY public.que_jobs ALTER COLUMN job_id SET DEFAULT nextval('public
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY public.quiz_questions ALTER COLUMN id SET DEFAULT nextval('public.quiz_questions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY public.quizzes ALTER COLUMN id SET DEFAULT nextval('public.quizzes_id_seq'::regclass);
 
 
@@ -1211,6 +1258,14 @@ ALTER TABLE ONLY public.permissions
 
 ALTER TABLE ONLY public.que_jobs
     ADD CONSTRAINT que_jobs_pkey PRIMARY KEY (queue, priority, run_at, job_id);
+
+
+--
+-- Name: quiz_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quiz_questions
+    ADD CONSTRAINT quiz_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1494,6 +1549,13 @@ CREATE UNIQUE INDEX index_permissions_on_role_id_and_user_id_and_context_id ON p
 
 
 --
+-- Name: index_quiz_questions_on_quiz_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quiz_questions_on_quiz_id ON public.quiz_questions USING btree (quiz_id);
+
+
+--
 -- Name: index_sites_on_url; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1638,6 +1700,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200226194920'),
 ('20200624153201'),
 ('20200914195556'),
-('20201217183552');
+('20201217183552'),
+('20201218171531');
 
 
