@@ -1,3 +1,4 @@
+app/models/quizzes/quiz_question.rb release/2020-11-18.29
 app/models/quizzes/quiz.rb release/2020-11-18.29
 config/initializers/canvas_sanitize.rb release/2020-11-18.29
 gems/canvas_sanitize/canvas_sanitize.gemspec release/2020-11-18.29
