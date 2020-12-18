@@ -75,4 +75,9 @@ Rails.application.routes.draw do
   post "api/canvas" => "api/canvas_proxy#proxy"
   put "api/canvas" => "api/canvas_proxy#proxy"
   delete "api/canvas" => "api/canvas_proxy#proxy"
+
+  # canvas routes
+  resources :courses do
+    resources :quizzes, controller: "quizzes/quizzes", except: :new
+  end
 end
