@@ -49,7 +49,7 @@ class Quizzes::QuizQuestion < ActiveRecord::Base
   Q_CALCULATED = 'calculated_question'
 
   # disabling for now - whole block
-  # before_save :validate_blank_questions
+  before_save :validate_blank_questions
   # before_save :infer_defaults
   # before_save :create_assessment_question, unless: :generated?
 
