@@ -30,35 +30,42 @@
 # @see AssessmentQuestion#create_quiz_question()
 # @see AssessmentQuestionBank#select_for_submission()
 class Quizzes::QuizQuestion < ActiveRecord::Base
-  extend RootAccountResolver
+  # disabling for now
+  # extend RootAccountResolver
   self.table_name = 'quiz_questions'
 
   include Workflow
 
   attr_readonly :quiz_id
   belongs_to :quiz, class_name: 'Quizzes::Quiz', inverse_of: :quiz_questions
-  belongs_to :assessment_question
-  belongs_to :quiz_group, class_name: 'Quizzes::QuizGroup'
+
+  # disabling for now - whole block
+  # belongs_to :assessment_question
+  # belongs_to :quiz_group, class_name: 'Quizzes::QuizGroup'
 
   Q_TEXT_ONLY = 'text_only_question'
   Q_FILL_IN_MULTIPLE_BLANKS = 'fill_in_multiple_blanks_question'
   Q_MULTIPLE_DROPDOWNS = 'multiple_dropdowns_question'
   Q_CALCULATED = 'calculated_question'
 
-  before_save :validate_blank_questions
-  before_save :infer_defaults
-  before_save :create_assessment_question, unless: :generated?
+  # disabling for now - whole block
+  # before_save :validate_blank_questions
+  # before_save :infer_defaults
+  # before_save :create_assessment_question, unless: :generated?
+
   before_destroy :delete_assessment_question, unless: :generated?
   before_destroy :update_quiz
   validates_presence_of :quiz_id
   serialize :question_data
   after_save :update_quiz
 
-  resolves_root_account through: :quiz
+  # disabling for now
+  # resolves_root_account through: :quiz
 
-  include MasterCourses::CollectionRestrictor
-  self.collection_owner_association = :quiz
-  restrict_columns :content, [:question_data, :position, :quiz_group_id, :workflow_state]
+  # disabling for now - whole block
+  # include MasterCourses::CollectionRestrictor
+  # self.collection_owner_association = :quiz
+  # restrict_columns :content, [:question_data, :position, :quiz_group_id, :workflow_state]
 
   workflow do
     state :active
@@ -119,6 +126,8 @@ class Quizzes::QuizQuestion < ActiveRecord::Base
   end
 
   def question_data
+    # disabling for now - until question data is defined
+    return
     if data = read_attribute(:question_data)
       if data.class == Hash
         write_attribute(:question_data, data.with_indifferent_access)
