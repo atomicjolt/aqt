@@ -127,7 +127,6 @@ class Quizzes::QuizQuestion < ActiveRecord::Base
 
   def question_data
     # disabling for now - until question data is defined
-    return
     if data = read_attribute(:question_data)
       if data.class == Hash
         write_attribute(:question_data, data.with_indifferent_access)
