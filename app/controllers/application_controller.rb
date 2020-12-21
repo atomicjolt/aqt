@@ -13,6 +13,35 @@ class ApplicationController < ActionController::Base
                 :targeted_app_instance,
                 :current_user_roles
 
+  # BEGIN - brought in from canvas
+  # This is not what is in canvas
+  def require_context
+    @context = CanvasCourse.find_by(lms_course_id: params[:course_id])
+  end
+
+  # used to generate context-specific urls without having to
+  # check which type of context it is everywhere
+  def named_context_url(context, name, *opts)
+    # disabling for now - the 'false &&'
+    if false && context.is_a?(UserProfile)
+      name = name.to_s.sub(/context/, "profile")
+    else
+      klass = context.class.base_class
+      name = name.to_s.sub(/context/, klass.name.underscore)
+      opts.unshift(context)
+    end
+    opts.push({}) unless opts[-1].is_a?(Hash)
+    include_host = opts[-1].delete(:include_host)
+    unless include_host
+      # rubocop:disable Style/RescueModifier
+      opts[-1][:host] = context.host_name rescue nil
+      # rubocop:enable Style/RescueModifier
+      opts[-1][:only_path] = true unless name.end_with?("_path")
+    end
+    self.send name, *opts
+  end
+  # END - brought in from canvas
+
   protected
 
   def after_invite_path_for(_inviter, _invitee)
