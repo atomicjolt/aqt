@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+  include ::Api
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -13,32 +14,24 @@ class ApplicationController < ActionController::Base
                 :targeted_app_instance,
                 :current_user_roles
 
-  # BEGIN - brought in from canvas
-  # This is not what is in canvas
+  # BEGIN - faked from canvas
+  attr_accessor :active_tab
+
   def require_context
     @context = CanvasCourse.find_by(lms_course_id: params[:course_id])
   end
 
-  # used to generate context-specific urls without having to
-  # check which type of context it is everywhere
-  def named_context_url(context, name, *opts)
-    # disabling for now - the 'false &&'
-    if false && context.is_a?(UserProfile)
-      name = name.to_s.sub(/context/, "profile")
-    else
-      klass = context.class.base_class
-      name = name.to_s.sub(/context/, klass.name.underscore)
-      opts.unshift(context)
-    end
-    opts.push({}) unless opts[-1].is_a?(Hash)
-    include_host = opts[-1].delete(:include_host)
-    unless include_host
-      # rubocop:disable Style/RescueModifier
-      opts[-1][:host] = context.host_name rescue nil
-      # rubocop:enable Style/RescueModifier
-      opts[-1][:only_path] = true unless name.end_with?("_path")
-    end
-    self.send name, *opts
+  def named_context_url(_context, _name, *opts)
+    course_quizzes_url *opts
+  end
+
+  # obviously this will need to be addressed
+  def authorized_action(_object, _actor, _rights)
+    true
+  end
+
+  def tab_enabled?(_id, _opts = {})
+    true
   end
   # END - brought in from canvas
 

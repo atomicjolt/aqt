@@ -145,8 +145,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# required by canvas
+gem "guardrail", "2.0.0"
+
 path "gems" do
   gem "canvas_crummy"
+  gem "canvas_ext"
   gem "canvas_sanitize"
   gem "workflow"
 end

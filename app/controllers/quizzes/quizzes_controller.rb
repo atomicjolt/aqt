@@ -1031,7 +1031,8 @@ class Quizzes::QuizzesController < ApplicationController
 
   def assignment_quizzes_json(serializer_options)
     old_quizzes = scoped_quizzes.select{ |q| q.quiz_type == QUIZ_TYPE_ASSIGNMENT }
-    unless @context.root_account.feature_enabled?(:newquizzes_on_quiz_page)
+    # disabling for now
+    unless false # @context.root_account.feature_enabled?(:newquizzes_on_quiz_page)
       return quizzes_json(old_quizzes, *serializer_options)
     end
     new_quizzes = Assignments::ScopedToUser.new(@context, @current_user).scope.preload(:duplicate_of).type_quiz_lti
@@ -1081,7 +1082,8 @@ class Quizzes::QuizzesController < ApplicationController
     # overrides later using the API:
     scope = scope.available unless @context.grants_right?(@current_user, session, :read_as_admin)
 
-    scope = DifferentiableAssignment.scope_filter(scope, @current_user, @context)
+    # disabling for now
+    # scope = DifferentiableAssignment.scope_filter(scope, @current_user, @context)
 
     @_quizzes = sort_quizzes(scope)
   end

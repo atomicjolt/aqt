@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU Affero General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+require './lib/api/errors'
 module Api
-  include Api::Errors::ControllerMethods
+  include ::Api::Errors::ControllerMethods
 
   # find id in collection, by either id or sis_*_id
   # if the collection is over the users table, `self` is replaced by @current_user.id

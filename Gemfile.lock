@@ -20,6 +20,9 @@ PATH
   remote: gems
   specs:
     canvas_crummy (0.0.1)
+    canvas_ext (1.0.0)
+      activesupport (>= 3.2)
+      tzinfo
     canvas_sanitize (0.0.1)
       sanitize (= 2.1.1)
     workflow (0.0.1)
@@ -176,6 +179,9 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guardrail (2.0.0)
+      activerecord (>= 5.1, < 6.1)
+      railties (>= 5.1, < 6.1)
     hashdiff (1.0.1)
     hashie (4.1.0)
     httparty (0.18.1)
@@ -463,6 +469,7 @@ DEPENDENCIES
   byebug
   cancancan
   canvas_crummy!
+  canvas_ext!
   canvas_sanitize!
   capybara
   composite_primary_keys
@@ -477,6 +484,7 @@ DEPENDENCIES
   graphql-batch (~> 0.3.9)
   graphql-guard
   guard-rspec
+  guardrail (= 2.0.0)
   heroku_secrets!
   httparty
   hub
