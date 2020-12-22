@@ -17,6 +17,7 @@
 #
 
 class Quizzes::QuizzesController < ApplicationController
+  include ApplicationHelper
   include Api::V1::Quiz
   include Api::V1::QuizzesNext::Quiz
 
@@ -109,12 +110,23 @@ class Quizzes::QuizzesController < ApplicationController
           options: quiz_options
         },
         :URLS => {
-          new_assignment_url: new_polymorphic_url([@context, :assignment]),
-          new_quiz_url: context_url(@context, :context_quizzes_new_url, :fresh => 1),
-          new_quizzes_selection: api_v1_course_new_quizzes_selection_update_url(@context),
-          question_banks_url: context_url(@context, :context_question_banks_url),
-          assignment_overrides: api_v1_course_quiz_assignment_overrides_url(@context),
-          new_quizzes_assignment_overrides: api_v1_course_new_quizzes_assignment_overrides_url(@context)
+
+          # disabling for now - whole block
+          # new_assignment_url: new_polymorphic_url([@context, :assignment]),
+          # new_quiz_url: context_url(@context, :context_quizzes_new_url, :fresh => 1),
+          # new_quizzes_selection: api_v1_course_new_quizzes_selection_update_url(@context),
+          # question_banks_url: context_url(@context, :context_question_banks_url),
+          # assignment_overrides: api_v1_course_quiz_assignment_overrides_url(@context),
+          # new_quizzes_assignment_overrides: api_v1_course_new_quizzes_assignment_overrides_url(@context)
+
+          # BEGIN - REPLACING WITH THIS
+          new_assignment_url: course_quizzes_url(@context),
+          new_quiz_url: course_quizzes_url(@context),
+          new_quizzes_selection: course_quizzes_url(@context),
+          question_banks_url: course_quizzes_url(@context),
+          assignment_overrides: course_quizzes_url(@context),
+          new_quizzes_assignment_overrides: course_quizzes_url(@context),
+          # BEGIN - REPLACING WITH THIS
         },
         :PERMISSIONS => {
           create: can_do(@context.quizzes.temp_record, @current_user, :create),
@@ -123,7 +135,8 @@ class Quizzes::QuizzesController < ApplicationController
         },
         :FLAGS => {
           question_banks: feature_enabled?(:question_banks),
-          post_to_sis_enabled: Assignment.sis_grade_export_enabled?(@context),
+          # disabling for now
+          post_to_sis_enabled: false, # Assignment.sis_grade_export_enabled?(@context),
           quiz_lti_enabled: quiz_lti_enabled?,
           migrate_quiz_enabled:
             @context.feature_enabled?(:quizzes_next) &&
@@ -1022,6 +1035,9 @@ class Quizzes::QuizzesController < ApplicationController
   end
 
   def quiz_lti_enabled?
+    # disabling for now
+    return false
+
     quiz_lti_tool = @context.quiz_lti_tool
     @context.root_account.feature_enabled?(:newquizzes_on_quiz_page) &&
       @context.feature_enabled?(:quizzes_next) &&

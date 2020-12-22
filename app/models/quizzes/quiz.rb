@@ -24,6 +24,7 @@ class Quizzes::Quiz < ActiveRecord::Base
   # extend RootAccountResolver
   self.table_name = 'quizzes'
 
+  include AjAdheresToPolicy
   include Workflow
   # disabling for now
   # include HasContentTags

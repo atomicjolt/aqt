@@ -54,6 +54,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model-better_errors (1.6.7)
+      activemodel (>= 3.0)
     activejob (5.2.4.4)
       activesupport (= 5.2.4.4)
       globalid (>= 0.3.6)
@@ -459,6 +461,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model-better_errors (= 1.6.7)
   apartment
   apartment-activejob-que
   attr_encrypted

@@ -33,7 +33,15 @@ class ApplicationController < ActionController::Base
   def tab_enabled?(_id, _opts = {})
     true
   end
-  # END - brought in from canvas
+
+  def setup_master_course_restrictions(_objects, _course, _user_can_edit: false)
+    :master
+  end
+
+  def feature_enabled?(_feature)
+    false
+  end
+  # END - faked from canvas
 
   protected
 

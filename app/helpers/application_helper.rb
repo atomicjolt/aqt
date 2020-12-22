@@ -20,11 +20,15 @@
 
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  include TextHelper
-  include HtmlTextHelper
-  include LocaleSelection
-  include Canvas::LockExplanation
-  include DatadogRumHelper
+  # include TextHelper
+  # include HtmlTextHelper
+  # include LocaleSelection
+  # include Canvas::LockExplanation
+  # include DatadogRumHelper
+
+  def application_base_url
+    File.join(request.base_url, "/")
+  end
 
   def context_user_name_display(user)
     name = user.try(:short_name) || user.try(:name)
