@@ -45,7 +45,136 @@ class ApplicationController < ActionController::Base
   def external_tools_display_hashes(_type, _context=@context, _custom_settings=[], tools_ids: nil)
     []
   end
+
+  def conditional_release_js_env(_assignment = nil, includes: []); end
+
+  def log_asset_access(_asset, _asset_category, _asset_group=nil, _level=nil, _membership_type=nil, overwrite:true, context: nil)
+  end
   # END - faked from canvas
+
+  # BEGIN - real from canvas
+
+  ##
+  # Sends data from rails to JavaScript
+  #
+  # The data you send will eventually make its way into the view by simply
+  # calling `to_json` on the data.
+  #
+  # It won't allow you to overwrite a key that has already been set
+  #
+  # Please use *ALL_CAPS* for keys since these are considered constants
+  # Also, please don't name it stuff from JavaScript's Object.prototype
+  # like `hasOwnProperty`, `constructor`, `__defineProperty__` etc.
+  #
+  # This method is available in controllers and views
+  #
+  # example:
+  #
+  #     # ruby
+  #     js_env :FOO_BAR => [1,2,3], :COURSE => @course
+  #
+  #     # coffeescript
+  #     require ['ENV'], (ENV) ->
+  #       ENV.FOO_BAR #> [1,2,3]
+  #
+  def js_env(hash = {}, overwrite = false)
+    # disabling for now - will enable as things are needed
+    return {}
+
+    return {} unless request.format.html? || request.format == "*/*" || @include_js_env
+
+    if hash.present? && @js_env_has_been_rendered
+      add_to_js_env(hash, @js_env_data_we_need_to_render_later, overwrite)
+      return
+    end
+
+    # set some defaults
+    unless @js_env
+      benchmark("init @js_env") do
+        editor_css = [
+          active_brand_config_url('css'),
+          view_context.stylesheet_path(css_url_for('what_gets_loaded_inside_the_tinymce_editor'))
+        ]
+
+        editor_hc_css = [
+          active_brand_config_url('css', { force_high_contrast: true }),
+          view_context.stylesheet_path(css_url_for('what_gets_loaded_inside_the_tinymce_editor', false, { force_high_contrast: true }))
+        ]
+
+        # Cisco doesn't want to load lato extended. see LS-1559
+        if (Setting.get('disable_lato_extended', 'false') == 'false')
+          editor_css << view_context.stylesheet_path(css_url_for('lato_extended'))
+          editor_hc_css << view_context.stylesheet_path(css_url_for('lato_extended'))
+        else
+          editor_css << view_context.stylesheet_path(css_url_for('lato'))
+          editor_hc_css << view_context.stylesheet_path(css_url_for('lato'))
+        end
+
+        @js_env_data_we_need_to_render_later = {}
+        @js_env = {
+          ASSET_HOST: Canvas::Cdn.add_brotli_to_host_if_supported(request),
+          active_brand_config_json_url: active_brand_config_url('json'),
+          url_to_what_gets_loaded_inside_the_tinymce_editor_css: editor_css,
+          url_for_high_contrast_tinymce_editor_css: editor_hc_css,
+          current_user_id: @current_user.try(:id),
+          current_user_roles: @current_user.try(:roles, @domain_root_account),
+          current_user_types: @current_user.try{|u| u.account_users.map{|t| t.readable_type }},
+          current_user_disabled_inbox: @current_user.try(:disabled_inbox?),
+          files_domain: HostUrl.file_host(@domain_root_account || Account.default, request.host_with_port),
+          DOMAIN_ROOT_ACCOUNT_ID: @domain_root_account.try(:global_id),
+          k12: k12?,
+          use_responsive_layout: use_responsive_layout?,
+          use_rce_enhancements: (@context.is_a?(User) ? @domain_root_account : @context).try(:feature_enabled?, :rce_enhancements),
+          rce_auto_save: @context.try(:feature_enabled?, :rce_auto_save),
+          help_link_name: help_link_name,
+          help_link_icon: help_link_icon,
+          use_high_contrast: @current_user.try(:prefers_high_contrast?),
+          disable_celebrations: @current_user.try(:prefers_no_celebrations?),
+          disable_keyboard_shortcuts: @current_user.try(:prefers_no_keyboard_shortcuts?),
+          LTI_LAUNCH_FRAME_ALLOWANCES: Lti::Launch.iframe_allowances(request.user_agent),
+          DEEP_LINKING_POST_MESSAGE_ORIGIN: request.base_url,
+          DEEP_LINKING_LOGGING: Setting.get('deep_linking_logging', nil),
+          SETTINGS: {
+            open_registration: @domain_root_account.try(:open_registration?),
+            collapse_global_nav: @current_user.try(:collapse_global_nav?),
+            show_feedback_link: show_feedback_link?
+          },
+        }
+
+        @js_env[:flashAlertTimeout] = 1.day.in_milliseconds if @current_user.try(:prefers_no_toast_timeout?)
+        @js_env[:KILL_JOY] = @domain_root_account.kill_joy? if @domain_root_account&.kill_joy?
+
+        cached_features = cached_js_env_account_features
+        @js_env[:DIRECT_SHARE_ENABLED] = cached_features.delete(:direct_share) && !@context.is_a?(Group) && @current_user&.can_content_share?
+        @js_env[:FEATURES] = cached_features.merge(
+          canvas_k6_theme: @context.try(:feature_enabled?, :canvas_k6_theme)
+        )
+        @js_env[:current_user] = @current_user ? Rails.cache.fetch(['user_display_json', @current_user].cache_key, :expires_in => 1.hour) { user_display_json(@current_user, :profile, [:avatar_is_fallback]) } : {}
+        @js_env[:page_view_update_url] = page_view_path(@page_view.id, page_view_token: @page_view.token) if @page_view
+        @js_env[:IS_LARGE_ROSTER] = true if !@js_env[:IS_LARGE_ROSTER] && @context.respond_to?(:large_roster?) && @context.large_roster?
+        @js_env[:context_asset_string] = @context.try(:asset_string) if !@js_env[:context_asset_string]
+        @js_env[:ping_url] = polymorphic_url([:api_v1, @context, :ping]) if @context.is_a?(Course)
+        @js_env[:TIMEZONE] = Time.zone.tzinfo.identifier if !@js_env[:TIMEZONE]
+        @js_env[:CONTEXT_TIMEZONE] = @context.time_zone.tzinfo.identifier if !@js_env[:CONTEXT_TIMEZONE] && @context.respond_to?(:time_zone) && @context.time_zone.present?
+        unless @js_env[:LOCALE]
+          I18n.set_locale_with_localizer
+          @js_env[:LOCALE] = I18n.locale.to_s
+          @js_env[:BIGEASY_LOCALE] = I18n.bigeasy_locale
+          @js_env[:FULLCALENDAR_LOCALE] = I18n.fullcalendar_locale
+          @js_env[:MOMENT_LOCALE] = I18n.moment_locale
+        end
+
+        @js_env[:lolcalize] = true if ENV['LOLCALIZE']
+        @js_env[:rce_auto_save_max_age_ms] = Setting.get('rce_auto_save_max_age_ms', 1.day.to_i * 1000).to_i if @js_env[:rce_auto_save]
+      end
+    end
+
+    add_to_js_env(hash, @js_env, overwrite)
+
+    @js_env
+  end
+  helper_method :js_env
+  # END - real from canvas
 
   protected
 

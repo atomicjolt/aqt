@@ -17,6 +17,8 @@
 #
 
 class Quizzes::QuizzesController < ApplicationController
+  layout 'canvas'
+
   include ApplicationHelper
   include Api::V1::Quiz
   include Api::V1::QuizzesNext::Quiz
@@ -156,7 +158,9 @@ class Quizzes::QuizzesController < ApplicationController
         :SIS_INTEGRATION_SETTINGS_ENABLED => sis_integration_settings_enabled,
         :NEW_QUIZZES_SELECTED => quiz_engine_selection
       }
-      if @context.is_a?(Course) && @context.grants_right?(@current_user, session, :read)
+      # disabling for now - reference to Course switched to CanvasCourse
+      # if @context.is_a?(Course) && @context.grants_right?(@current_user, session, :read)
+      if @context.is_a?(CanvasCourse) && @context.grants_right?(@current_user, session, :read)
         hash[:COURSE_ID] = @context.id.to_s
       end
       js_env(hash)

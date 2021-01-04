@@ -1052,6 +1052,10 @@ module ApplicationHelper
   end
 
   def set_tutorial_js_env
+    # disabling for now - added top two lines
+    js_env NEW_USER_TUTORIALS: {is_enabled: false}
+    return
+
     return if @js_env && @js_env[:NEW_USER_TUTORIALS]
 
     is_enabled = @context.is_a?(Course) &&
