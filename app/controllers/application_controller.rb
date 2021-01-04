@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
   def feature_enabled?(_feature)
     false
   end
+
+  def external_tools_display_hashes(_type, _context=@context, _custom_settings=[], tools_ids: nil)
+    []
+  end
   # END - faked from canvas
 
   protected

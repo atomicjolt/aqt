@@ -1105,6 +1105,9 @@ class Quizzes::QuizzesController < ApplicationController
   end
 
   def quiz_engine_selection
+    # disabling for now
+    return nil
+
     selection = nil
     if @context.is_a?(Course) && @context.settings.dig(:engine_selected, :user_id)
       user_id = @current_user.id
