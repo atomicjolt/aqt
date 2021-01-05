@@ -149,6 +149,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # This has a related initializer that might be needed
 gem "active_model-better_errors", "1.6.7", require: "active_model/better_errors"
 gem "guardrail", "2.0.0"
+gem "i18nliner", "0.1.2"
 
 path "gems" do
   gem "canvas_crummy"
