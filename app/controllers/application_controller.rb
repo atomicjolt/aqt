@@ -54,6 +54,61 @@ class ApplicationController < ActionController::Base
 
   # BEGIN - real from canvas
 
+  def css_bundles
+    @css_bundles ||= []
+  end
+  helper_method :css_bundles
+
+  def css_bundle(*args)
+    opts = (args.last.is_a?(Hash) ? args.pop : {})
+    Array(args).flatten.each do |bundle|
+      css_bundles << [bundle, opts[:plugin]] unless css_bundles.include? [bundle, opts[:plugin]]
+    end
+    nil
+  end
+  helper_method :css_bundle
+
+  def js_bundles; @js_bundles ||= []; end
+  helper_method :js_bundles
+
+  # Use this method to place a bundle on the page, note that the end goal here
+  # is to only ever include one bundle per page load, so use this with care and
+  # ensure that the bundle you are requiring isn't simply a dependency of some
+  # other bundle.
+  #
+  # Bundles are defined in app/coffeescripts/bundles/<bundle>.coffee
+  #
+  # usage: js_bundle :gradebook
+  #
+  # Only allows multiple arguments to support old usage of jammit_js
+  #
+  # Optional :plugin named parameter allows you to specify a plugin which
+  # contains the bundle. Example:
+  #
+  # js_bundle :gradebook, :plugin => :my_feature
+  #
+  # will look for the bundle in
+  # /plugins/my_feature/(optimized|javascripts)/compiled/bundles/ rather than
+  # /(optimized|javascripts)/compiled/bundles/
+  def js_bundle(*args)
+    opts = (args.last.is_a?(Hash) ? args.pop : {})
+    Array(args).flatten.each do |bundle|
+      js_bundles << [bundle, opts[:plugin], false] unless js_bundles.include? [bundle, opts[:plugin], false]
+    end
+    nil
+  end
+  helper_method :js_bundle
+
+  def add_body_class(*args)
+    @body_classes ||= []
+    raise "call add_body_class for #{args} in the controller when using streaming templates" if @streaming_template && (args - @body_classes).any?
+    @body_classes += args
+  end
+  helper_method :add_body_class
+
+  def body_classes; @body_classes ||= []; end
+  helper_method :body_classes
+
   ##
   # Sends data from rails to JavaScript
   #
