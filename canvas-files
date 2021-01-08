@@ -10,6 +10,8 @@ config/initializers/active_model_errors.rb release/2020-11-18.29
 config/initializers/canvas_crummy.rb release/2020-11-18.29
 config/initializers/canvas_sanitize.rb release/2020-11-18.29
 config/initializers/strong_parameters.rb release/2020-11-18.29
+frontend_build/i18n.js release/2020-11-18.29
+frontend_build/i18nPlugin.js release/2020-11-18.29
 gems/canvas_crummy/canvas_crummy.gemspec release/2020-11-18.29
 gems/canvas_crummy/Gemfile release/2020-11-18.29
 gems/canvas_crummy/lib/canvas_crummy/controller_methods.rb release/2020-11-18.29
@@ -51,3 +53,7 @@ lib/api/v1/quizzes_next/quiz.rb release/2020-11-18.29
 lib/canvas/draft_state_validations.rb release/2020-11-18.29
 lib/locked_for.rb release/2020-11-18.29
 lib/search_term_helper.rb release/2020-11-18.29
+public/javascripts/dummyI18nResource.js release/2020-11-18.29
+public/javascripts/i18nObj.js release/2020-11-18.29
+public/javascripts/mergeI18nTranslations.js release/2020-11-18.29
+public/javascripts/translations/_core_en.js release/2020-11-18.29
