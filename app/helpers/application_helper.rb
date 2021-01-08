@@ -233,38 +233,46 @@ module ApplicationHelper
   end
 
   def include_js_bundles
-    # This is purely a performance optimization to reduce the steps of the waterfall
-    # and let the browser know it needs to start downloading all of these chunks
-    # even before any webpack code runs. It will put a <link rel="preload" ...>
-    # for every chunk that is needed by any of the things you `js_bundle` in your rails controllers/views
-    @rendered_js_bundles ||= []
-    new_js_bundles = js_bundles - @rendered_js_bundles
-    @rendered_js_bundles += new_js_bundles
-
-    @rendered_preload_chunks ||= []
-    preload_chunks = new_js_bundles.map do |(bundle, plugin, *)|
-      key = "#{plugin ? "#{plugin}-" : ''}#{bundle}"
-      Canvas::Cdn::RevManifest.all_webpack_chunks_for(key)
-    end.flatten.uniq - @script_chunks - @rendered_preload_chunks # subtract out the ones we already preloaded in the <head>
-    @rendered_preload_chunks += preload_chunks
-
-    capture do
-      preload_chunks.each { |url| concat preload_link_tag("#{js_base_url}/#{url}") }
-
-      # if you look the app/jsx/main.js, there is a function there that will
-      # process anything on window.bundles and knows how to load everything it needs
-      # to load that "js_bundle". And by the time that runs, the browser will have already
-      # started downloading those script urls because of those preload tags above,
-      # so it will not cause a new request to be made.
-      #
-      # preloading works similarily for window.deferredBundles only that their
-      # execution is delayed until the DOM is ready.
-      concat javascript_tag new_js_bundles.map { |(bundle, plugin, defer)|
-        container = defer ? 'window.deferredBundles' : 'window.bundles'
-        "(#{container} || (#{container} = [])).push('#{plugin ? "#{plugin}-" : ''}#{bundle}');"
-      }.join("\n") if new_js_bundles.present?
+    # [[:quizzes_index, nil, false]]
+    js_bundles.each do |(name, _plubin, *)|
+      javascript_packs_with_chunks_tag name
     end
   end
+
+  # disabling for now - using our own asset system
+  #def include_js_bundles
+  #  # This is purely a performance optimization to reduce the steps of the waterfall
+  #  # and let the browser know it needs to start downloading all of these chunks
+  #  # even before any webpack code runs. It will put a <link rel="preload" ...>
+  #  # for every chunk that is needed by any of the things you `js_bundle` in your rails controllers/views
+  #  @rendered_js_bundles ||= []
+  #  new_js_bundles = js_bundles - @rendered_js_bundles
+  #  @rendered_js_bundles += new_js_bundles
+
+  #  @rendered_preload_chunks ||= []
+  #  preload_chunks = new_js_bundles.map do |(bundle, plugin, *)|
+  #    key = "#{plugin ? "#{plugin}-" : ''}#{bundle}"
+  #    Canvas::Cdn::RevManifest.all_webpack_chunks_for(key)
+  #  end.flatten.uniq - @script_chunks - @rendered_preload_chunks # subtract out the ones we already preloaded in the <head>
+  #  @rendered_preload_chunks += preload_chunks
+
+  #  capture do
+  #    preload_chunks.each { |url| concat preload_link_tag("#{js_base_url}/#{url}") }
+
+  #    # if you look the app/jsx/main.js, there is a function there that will
+  #    # process anything on window.bundles and knows how to load everything it needs
+  #    # to load that "js_bundle". And by the time that runs, the browser will have already
+  #    # started downloading those script urls because of those preload tags above,
+  #    # so it will not cause a new request to be made.
+  #    #
+  #    # preloading works similarily for window.deferredBundles only that their
+  #    # execution is delayed until the DOM is ready.
+  #    concat javascript_tag new_js_bundles.map { |(bundle, plugin, defer)|
+  #      container = defer ? 'window.deferredBundles' : 'window.bundles'
+  #      "(#{container} || (#{container} = [])).push('#{plugin ? "#{plugin}-" : ''}#{bundle}');"
+  #    }.join("\n") if new_js_bundles.present?
+  #  end
+  #end
 
   def include_css_bundles
     @rendered_css_bundles ||= []
