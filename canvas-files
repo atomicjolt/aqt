@@ -1,3 +1,5 @@
+app/coffeescripts/views/quizzes/IndexView.js release/2020-11-18.29
+app/coffeescripts/views/quizzes/NoQuizzesView.js release/2020-11-18.29
 app/controllers/filters/quizzes.rb release/2020-11-18.29
 app/controllers/quizzes/quizzes_controller.rb release/2020-11-18.29
 app/helpers/application_helper.rb release/2020-11-18.29
@@ -5,6 +7,7 @@ app/jsx/bundles/quizzes_index.js release/2020-11-18.29
 app/models/quizzes/quiz_question/question_data.rb release/2020-11-18.29
 app/models/quizzes/quiz_question.rb release/2020-11-18.29
 app/models/quizzes/quiz.rb release/2020-11-18.29
+app/views/jst/quizzes/NoQuizzesView.handlebars release/2020-11-18.29
 app/views/quizzes/quizzes/index.html.erb release/2020-11-18.29
 config/initializers/active_model_errors.rb release/2020-11-18.29
 config/initializers/canvas_crummy.rb release/2020-11-18.29

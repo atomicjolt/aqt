@@ -50,6 +50,7 @@ default: &default
     - .jpg
     - .gql
     - .graphql
+    - .handlebars
 
 development:
   <<: *default
