@@ -232,10 +232,11 @@ module ApplicationHelper
     end
   end
 
+  # not currently used
   def include_js_bundles
     # [[:quizzes_index, nil, false]]
-    js_bundles.each do |(name, _plubin, *)|
-      javascript_packs_with_chunks_tag name
+    js_bundles.map do |(name, _plugin, *)|
+      javascript_packs_with_chunks_tag name.to_s
     end
   end
 

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript">
+      ENV = <%= raw(render_js_env) %>
+    </script>
   </head>
   <body>
     <%= yield %>
 
-    <%= include_js_bundles %>
+    <%- js_bundles.each do |bundle, _plugin, *| %>
+      <%= javascript_packs_with_chunks_tag bundle.to_s %>
+    <% end %>
   </body>
 </html>

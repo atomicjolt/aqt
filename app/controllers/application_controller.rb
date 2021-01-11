@@ -133,10 +133,10 @@ class ApplicationController < ActionController::Base
   #       ENV.FOO_BAR #> [1,2,3]
   #
   def js_env(hash = {}, overwrite = false)
-    # disabling for now - will enable as things are needed
-    return {}
-
     return {} unless request.format.html? || request.format == "*/*" || @include_js_env
+
+    # disabling for now - will enable as things are needed
+    return @js_env || @js_env = hash
 
     if hash.present? && @js_env_has_been_rendered
       add_to_js_env(hash, @js_env_data_we_need_to_render_later, overwrite)
@@ -229,6 +229,15 @@ class ApplicationController < ActionController::Base
     @js_env
   end
   helper_method :js_env
+
+  def render_js_env
+    res = StringifyIds.recursively_stringify_ids(js_env.clone).to_json
+    @js_env_has_been_rendered = true
+    res
+  end
+  helper_method :render_js_env
+
+
   # END - real from canvas
 
   protected
