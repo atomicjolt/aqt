@@ -40,6 +40,12 @@ gems/canvas_sanitize/README.md release/2020-11-18.29
 gems/canvas_sanitize/spec/canvas_sanitize/canvas_sanitize_spec.rb release/2020-11-18.29
 gems/canvas_sanitize/spec/spec_helper.rb release/2020-11-18.29
 gems/canvas_sanitize/test.sh release/2020-11-18.29
+gems/stringify_ids/Gemfile release/2020-11-18.29
+gems/stringify_ids/lib/stringify_ids.rb release/2020-11-18.29
+gems/stringify_ids/spec/spec_helper.rb release/2020-11-18.29
+gems/stringify_ids/spec/stringify_ids_spec.rb release/2020-11-18.29
+gems/stringify_ids/stringify_ids.gemspec release/2020-11-18.29
+gems/stringify_ids/test.sh release/2020-11-18.29
 gems/workflow/Gemfile release/2020-11-18.29
 gems/workflow/lib/workflow.rb release/2020-11-18.29
 gems/workflow/workflow.gemspec release/2020-11-18.29

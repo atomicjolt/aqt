@@ -155,5 +155,6 @@ path "gems" do
   gem "canvas_crummy"
   gem "canvas_ext"
   gem "canvas_sanitize"
+  gem "stringify_ids"
   gem "workflow"
 end
