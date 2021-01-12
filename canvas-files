@@ -1,3 +1,4 @@
+app/coffeescripts/behaviors/authenticity_token.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/IndexView.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/NoQuizzesView.js release/2020-11-18.29
 app/controllers/filters/quizzes.rb release/2020-11-18.29
