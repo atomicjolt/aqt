@@ -1,4 +1,5 @@
 app/coffeescripts/behaviors/authenticity_token.js release/2020-11-18.29
+app/coffeescripts/jquery.rails_flash_notifications.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/IndexView.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/NoQuizzesView.js release/2020-11-18.29
 app/controllers/filters/quizzes.rb release/2020-11-18.29
@@ -63,4 +64,5 @@ lib/api/v1/quizzes_next/quiz.rb release/2020-11-18.29
 lib/canvas/draft_state_validations.rb release/2020-11-18.29
 lib/locked_for.rb release/2020-11-18.29
 lib/search_term_helper.rb release/2020-11-18.29
+public/javascripts/INST.js release/2020-11-18.29
 public/javascripts/jquery.ajaxJSON.js release/2020-11-18.29

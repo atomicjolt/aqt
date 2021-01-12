@@ -17,7 +17,7 @@
  */
 
 import $ from 'jquery'
-import authenticity_token from 'compiled/behaviors/authenticity_token'
+import authenticity_token from '../../client/coffeescripts/behaviors/authenticity_token'
 import INST from './INST'
 
 const DONE_READY_STATE = 4
