@@ -8,6 +8,7 @@ app/jsx/shared/helpers/getCookie.js release/2020-11-18.29
 app/models/quizzes/quiz_question/question_data.rb release/2020-11-18.29
 app/models/quizzes/quiz_question.rb release/2020-11-18.29
 app/models/quizzes/quiz.rb release/2020-11-18.29
+app/views/jst/quizzes/IndexView.handlebars release/2020-11-18.29
 app/views/jst/quizzes/NoQuizzesView.handlebars release/2020-11-18.29
 app/views/quizzes/quizzes/index.html.erb release/2020-11-18.29
 config/initializers/active_model_errors.rb release/2020-11-18.29
@@ -61,3 +62,4 @@ lib/api/v1/quizzes_next/quiz.rb release/2020-11-18.29
 lib/canvas/draft_state_validations.rb release/2020-11-18.29
 lib/locked_for.rb release/2020-11-18.29
 lib/search_term_helper.rb release/2020-11-18.29
+public/javascripts/jquery.ajaxJSON.js release/2020-11-18.29

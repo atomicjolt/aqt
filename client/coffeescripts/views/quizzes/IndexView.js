@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU Affero General Public License along
 // with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import I18n from 'i18n!quizzesIndexView'
+// import I18n from 'i18n!quizzesIndexView'
+import I18n from '../../../mocks/i18n'
 import $ from 'jquery'
 import 'jquery.ajaxJSON'
 import _ from 'underscore'
@@ -26,10 +27,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Alert} from '@instructure/ui-alerts'
 import {Text} from '@instructure/ui-text'
-import ContentTypeExternalToolTray from 'jsx/shared/ContentTypeExternalToolTray'
-import QuizEngineModal from 'jsx/quizzes/QuizEngineModal'
+// import ContentTypeExternalToolTray from 'jsx/shared/ContentTypeExternalToolTray'
+// import QuizEngineModal from 'jsx/quizzes/QuizEngineModal'
 import {ltiState} from '../../../../public/javascripts/lti/post_message/handleLtiPostMessage'
-import getCookie from 'jsx/shared/helpers/getCookie'
+import getCookie from '../../../jsx/shared/helpers/getCookie'
 
 export default class IndexView extends Backbone.View {
   static initClass() {
