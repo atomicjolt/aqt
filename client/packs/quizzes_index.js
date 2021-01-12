@@ -1,1 +1,1 @@
-import '../../app/jsx/bundles/quizzes_index';
+import '../jsx/bundles/quizzes_index';

@@ -16,17 +16,20 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import I18n from 'i18n!quizzes_index'
+// import I18n from 'i18n!quizzes_index'
 import $ from 'jquery'
-import _ from 'underscore'
+import _ from 'lodash'
 import Backbone from 'Backbone'
-import QuizItemGroupView from 'compiled/views/quizzes/QuizItemGroupView'
-import NoQuizzesView from 'compiled/views/quizzes/NoQuizzesView'
-import IndexView from 'compiled/views/quizzes/IndexView'
-import QuizCollection from 'compiled/collections/QuizCollection'
-import QuizOverrideLoader from 'compiled/models/QuizOverrideLoader'
-import vddTooltip from 'compiled/util/vddTooltip'
-import {monitorLtiMessages} from 'lti/messages'
+import I18n from './mocks/i18n'
+// import QuizItemGroupView from 'compiled/views/quizzes/QuizItemGroupView'
+import NoQuizzesView from '../../coffeescripts/views/quizzes/NoQuizzesView'
+import IndexView from '../../coffeescripts/views/quizzes/IndexView'
+// import IndexView from '../../../client/IndexView'
+// import QuizCollection from 'compiled/collections/QuizCollection'
+// import QuizOverrideLoader from 'compiled/models/QuizOverrideLoader'
+// import vddTooltip from 'compiled/util/vddTooltip'
+// disabling for now
+// import {monitorLtiMessages} from 'lti/messages'
 
 const QuizzesIndexRouter = Backbone.Router.extend({
   routes: {
@@ -44,21 +47,21 @@ const QuizzesIndexRouter = Backbone.Router.extend({
     this.allQuizzes = ENV.QUIZZES
 
     this.quizzes = {
-      assignment: this.createQuizItemGroupView(
-        this.allQuizzes.assignment,
-        this.translations.assignmentQuizzes,
-        'assignment'
-      ),
-      open: this.createQuizItemGroupView(
-        this.allQuizzes.open,
-        this.translations.practiceQuizzes,
-        'open'
-      ),
-      surveys: this.createQuizItemGroupView(
-        this.allQuizzes.surveys,
-        this.translations.surveys,
-        'surveys'
-      ),
+      // assignment: this.createQuizItemGroupView(
+      //   this.allQuizzes.assignment,
+      //   this.translations.assignmentQuizzes,
+      //   'assignment'
+      // ),
+      // open: this.createQuizItemGroupView(
+      //   this.allQuizzes.open,
+      //   this.translations.practiceQuizzes,
+      //   'open'
+      // ),
+      // surveys: this.createQuizItemGroupView(
+      //   this.allQuizzes.surveys,
+      //   this.translations.surveys,
+      //   'surveys'
+      // ),
       noQuizzes: new NoQuizzesView()
     }
   },
@@ -118,4 +121,5 @@ const router = new QuizzesIndexRouter()
 Backbone.history.start()
 
 vddTooltip()
-monitorLtiMessages()
+// disabling for now
+// monitorLtiMessages()
