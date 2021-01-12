@@ -4,6 +4,7 @@ app/controllers/filters/quizzes.rb release/2020-11-18.29
 app/controllers/quizzes/quizzes_controller.rb release/2020-11-18.29
 app/helpers/application_helper.rb release/2020-11-18.29
 app/jsx/bundles/quizzes_index.js release/2020-11-18.29
+app/jsx/shared/helpers/getCookie.js release/2020-11-18.29
 app/models/quizzes/quiz_question/question_data.rb release/2020-11-18.29
 app/models/quizzes/quiz_question.rb release/2020-11-18.29
 app/models/quizzes/quiz.rb release/2020-11-18.29
