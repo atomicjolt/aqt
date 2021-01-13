@@ -24,9 +24,9 @@
 const Backbone = require('backbone')
 
 // Apply all of our patches
-// require('compiled/backbone-ext/Backbone.syncWithMultipart')
-// require('compiled/backbone-ext/Model')
+require('../../client/coffeescripts/backbone-ext/Backbone.syncWithMultipart')
+require('../../client/coffeescripts/backbone-ext/Model')
 require('../../client/coffeescripts/backbone-ext/View')
-// require('compiled/backbone-ext/Collection')
+require('../../client/coffeescripts/backbone-ext/Collection')
 
 module.exports = Backbone
