@@ -1,6 +1,14 @@
+app/coffeescripts/backbone-ext/Backbone.syncWithMultipart.js release/2020-11-18.29
+app/coffeescripts/backbone-ext/Collection.coffee release/2020-11-18.29
+app/coffeescripts/backbone-ext/DefaultUrlMixin.js release/2020-11-18.29
+app/coffeescripts/backbone-ext/Model.coffee release/2020-11-18.29
+app/coffeescripts/backbone-ext/Model/computedAttributes.js release/2020-11-18.29
+app/coffeescripts/backbone-ext/Model/dateAttributes.js release/2020-11-18.29
+app/coffeescripts/backbone-ext/Model/errors.js release/2020-11-18.29
 app/coffeescripts/backbone-ext/View.coffee release/2020-11-18.29
 app/coffeescripts/behaviors/authenticity_token.js release/2020-11-18.29
 app/coffeescripts/jquery.rails_flash_notifications.js release/2020-11-18.29
+app/coffeescripts/str/splitAssetString.js release/2020-11-18.29
 app/coffeescripts/util/mixin.coffee release/2020-11-18.29
 app/coffeescripts/views/quizzes/IndexView.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/NoQuizzesView.js release/2020-11-18.29
@@ -71,3 +79,4 @@ public/javascripts/Backbone.js release/2020-11-18.29
 public/javascripts/INST.js release/2020-11-18.29
 public/javascripts/jquery.ajaxJSON.js release/2020-11-18.29
 public/javascripts/str/htmlEscape.js release/2020-11-18.29
+public/javascripts/str/pluralize.js release/2020-11-18.29

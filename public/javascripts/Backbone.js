@@ -21,12 +21,12 @@
 // back a Backbone with all of our instructure specific patches to it.
 
 // Get the unpatched Backbone
-const Backbone = require('node_modules-version-of-backbone')
+const Backbone = require('backbone')
 
 // Apply all of our patches
-require('compiled/backbone-ext/Backbone.syncWithMultipart')
-require('compiled/backbone-ext/Model')
-require('compiled/backbone-ext/View')
-require('compiled/backbone-ext/Collection')
+// require('compiled/backbone-ext/Backbone.syncWithMultipart')
+// require('compiled/backbone-ext/Model')
+require('../../client/coffeescripts/backbone-ext/View')
+// require('compiled/backbone-ext/Collection')
 
 module.exports = Backbone
