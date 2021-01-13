@@ -67,3 +67,4 @@ lib/locked_for.rb release/2020-11-18.29
 lib/search_term_helper.rb release/2020-11-18.29
 public/javascripts/INST.js release/2020-11-18.29
 public/javascripts/jquery.ajaxJSON.js release/2020-11-18.29
+public/javascripts/str/htmlEscape.js release/2020-11-18.29

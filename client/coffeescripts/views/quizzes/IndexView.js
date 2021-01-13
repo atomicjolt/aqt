@@ -29,7 +29,7 @@ import {Alert} from '@instructure/ui-alerts'
 import {Text} from '@instructure/ui-text'
 // import ContentTypeExternalToolTray from 'jsx/shared/ContentTypeExternalToolTray'
 // import QuizEngineModal from 'jsx/quizzes/QuizEngineModal'
-import {ltiState} from '../../../../public/javascripts/lti/post_message/handleLtiPostMessage'
+// import {ltiState} from '../../../../public/javascripts/lti/post_message/handleLtiPostMessage'
 import getCookie from '../../../jsx/shared/helpers/getCookie'
 
 export default class IndexView extends Backbone.View {
@@ -210,9 +210,10 @@ export default class IndexView extends Backbone.View {
     const handleDismiss = () => {
       this.setExternalToolTray(null)
       returnFocusTo.focus()
-      if (ltiState?.tray?.refreshOnClose) {
-        this.reloadPage()
-      }
+      // disabling for now
+      // if (ltiState?.tray?.refreshOnClose) {
+      //   this.reloadPage()
+      // }
     }
 
     ReactDOM.render(

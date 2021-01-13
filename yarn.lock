@@ -2788,12 +2788,12 @@ babylon@^6.18.0:
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
 
-backbone@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/backbone/-/backbone-1.4.0.tgz#54db4de9df7c3811c3f032f34749a4cd27f3bd12"
-  integrity sha512-RLmDrRXkVdouTg38jcgHhyQ/2zjg7a8E6sz2zxfz21Hh17xDJYUHBZimVIt5fUyS8vbfpeSmTL3gUjTEvUV3qQ==
+backbone@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/backbone/-/backbone-1.1.1.tgz#8091197fef3a58fdeae24de70d96e23ce432f399"
+  integrity sha1-gJEZf+86WP3q4k3nDZbiPOQy85k=
   dependencies:
-    underscore ">=1.8.3"
+    underscore ">=1.5.0"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -6726,10 +6726,14 @@ jest@^24.9.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
-jquery@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
-  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+jquery.cookie@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jquery.cookie/-/jquery.cookie-1.4.1.tgz#d63dce209eab691fe63316db08ca9e47e0f9385b"
+  integrity sha1-1j3OIJ6raR/mMxbbCMqeR+D5OFs=
+
+"jquery@https://github.com/instructure/jquery.git#1.7.2-with-AMD-and-CommonJS":
+  version "1.7.2"
+  resolved "https://github.com/instructure/jquery.git#3a48a84c713291b790a2556d9ba036ec4d53c52f"
 
 js-base64@^2.1.8:
   version "2.6.4"
@@ -11013,7 +11017,7 @@ uglify-js@^3.1.4:
     commander "~2.20.3"
     source-map "~0.6.1"
 
-underscore@>=1.8.3:
+underscore@>=1.5.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.12.0.tgz#4814940551fc80587cef7840d1ebb0f16453be97"
   integrity sha512-21rQzss/XPMjolTiIezSu3JAjgagXKROtNrYFEOWK109qY1Uv2tVjPTZ1ci2HgvQDA16gHYSthQIJfB+XId/rQ==

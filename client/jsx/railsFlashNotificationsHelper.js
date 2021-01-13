@@ -16,9 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import I18n from 'i18n!shared.flash_notices'
+import I18n from '../mocks/i18n'
 import $ from 'jquery'
-import htmlEscape from 'str/htmlEscape'
+import htmlEscape from '../../public/javascripts/str/htmlEscape'
 import 'jquery.cookie'
 
 function updateAriaLive({polite} = {polite: false}) {
