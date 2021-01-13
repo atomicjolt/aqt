@@ -1,3 +1,4 @@
+app/coffeescripts/backbone-ext/View.coffee release/2020-11-18.29
 app/coffeescripts/behaviors/authenticity_token.js release/2020-11-18.29
 app/coffeescripts/jquery.rails_flash_notifications.js release/2020-11-18.29
 app/coffeescripts/views/quizzes/IndexView.js release/2020-11-18.29
