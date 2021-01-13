@@ -51,6 +51,7 @@ default: &default
     - .gql
     - .graphql
     - .handlebars
+    - .coffee
 
 development:
   <<: *default
