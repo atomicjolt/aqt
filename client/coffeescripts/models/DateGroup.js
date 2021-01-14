@@ -17,7 +17,8 @@
  */
 
 import Backbone from 'Backbone'
-import I18n from 'i18n!models_DateGroup'
+// import I18n from 'i18n!models_DateGroup'
+ import I18n from 'i18n'
 import tz from 'timezone'
 
 export default class DateGroup extends Backbone.Model {

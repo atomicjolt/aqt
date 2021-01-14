@@ -15,8 +15,9 @@
 // You should have received a copy of the GNU Affero General Public License along
 // with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import pandapub from '../PandaPub'
+// import pandapub from '../PandaPub'
 import $ from 'jquery'
+const pandapub = {};
 
 // This class handles the common logic of "use PandaPub when available,
 // otherwise poll".

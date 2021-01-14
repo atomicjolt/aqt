@@ -18,11 +18,15 @@
 import $ from 'jquery'
 import _ from 'underscore'
 import Backbone from 'Backbone'
-import Assignment from '../models/Assignment'
-import DateGroup from './DateGroup'
-import AssignmentOverrideCollection from '../collections/AssignmentOverrideCollection'
-import DateGroupCollection from '../collections/DateGroupCollection'
-import I18n from 'i18n!modelsQuiz'
+
+// disabling for now
+// import Assignment from '../models/Assignment'
+// import DateGroup from './DateGroup'
+// import AssignmentOverrideCollection from '../collections/AssignmentOverrideCollection'
+// import DateGroupCollection from '../collections/DateGroupCollection'
+
+// import I18n from 'i18n!modelsQuiz'
+import I18n from 'i18n'
 import 'jquery.ajaxJSON'
 import 'jquery.instructure_misc_helpers'
 import PandaPubPoller from '../util/PandaPubPoller'
@@ -71,6 +75,9 @@ export default class Quiz extends Backbone.Model {
   }
 
   initAssignment() {
+    // disabling for now
+    return;
+
     if (this.attributes.assignment) {
       this.set('assignment', new Assignment(this.attributes.assignment))
     }
@@ -217,6 +224,8 @@ export default class Quiz extends Backbone.Model {
   }
 
   defaultDates() {
+    // disabling for now
+    return;
     return new DateGroup({
       due_at: this.get('due_at'),
       unlock_at: this.get('unlock_at'),

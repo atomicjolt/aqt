@@ -15,24 +15,29 @@
 // You should have received a copy of the GNU Affero General Public License along
 // with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import I18n from 'i18n!quizzes.index'
+// import I18n from 'i18n!quizzes.index'
+import I18n from 'i18n'
 
 import $ from 'jquery'
 import _ from 'underscore'
 import Backbone from 'Backbone'
-import CyoeHelper from 'jsx/shared/conditional_release/CyoeHelper'
-import PublishIconView from '../PublishIconView'
-import LockIconView from '../LockIconView'
-import DateDueColumnView from '../assignments/DateDueColumnView'
-import DateAvailableColumnView from '../assignments/DateAvailableColumnView'
-import SisButtonView from '../SisButtonView'
+// disabling for now
+// import CyoeHelper from 'jsx/shared/conditional_release/CyoeHelper'
+// import PublishIconView from '../PublishIconView'
+// import LockIconView from '../LockIconView'
+// import DateDueColumnView from '../assignments/DateDueColumnView'
+// import DateAvailableColumnView from '../assignments/DateAvailableColumnView'
+// import SisButtonView from '../SisButtonView'
 import template from 'jst/quizzes/QuizItemView'
 import 'jquery.disableWhileLoading'
 import Quiz from '../../models/Quiz'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DirectShareCourseTray from 'jsx/shared/direct_share/DirectShareCourseTray'
-import DirectShareUserModal from 'jsx/shared/direct_share/DirectShareUserModal'
+// disabling for now
+// import DirectShareCourseTray from 'jsx/shared/direct_share/DirectShareCourseTray'
+// import DirectShareUserModal from 'jsx/shared/direct_share/DirectShareUserModal'
+const DirectShareCourseTray = ()=>null
+const DirectShareUserModal = ()=>null
 
 export default class ItemView extends Backbone.View {
   static initClass() {
@@ -329,7 +334,8 @@ export default class ItemView extends Backbone.View {
       tool.url = tool.base_url + `&quizzes[]=${this.model.get('id')}`
     })
 
-    base.cyoe = CyoeHelper.getItemData(base.assignment_id, base.quiz_type === 'assignment')
+    // disabling for now
+    base.cyoe = {} // CyoeHelper.getItemData(base.assignment_id, base.quiz_type === 'assignment')
     base.return_to = encodeURIComponent(window.location.pathname)
 
     if (this.model.get('multiple_due_dates')) {

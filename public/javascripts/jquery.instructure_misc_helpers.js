@@ -17,7 +17,8 @@
  */
 
 import INST from './INST'
-import I18n from 'i18n!instructure'
+// import I18n from 'i18n!instructure'
+import I18n from 'i18n'
 import $ from 'jquery'
 import htmlEscape from './str/htmlEscape'
 

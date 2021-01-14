@@ -32,10 +32,11 @@ $('#form').disableWhileLoading(promise, {
 });
 
 */
-import I18n from 'i18n!disableWhileLoading'
+import I18n from '../../client/mocks/i18n'
 import $ from 'jquery'
 import './jquery.ajaxJSON'
-import 'spin.js/jquery.spin'
+// disabling for now - webpack has issues loading
+// import 'spin.js/jquery.spin'
 
 function eraseFromArray(array, victim) {
   array.forEach((prospect, index) => {
@@ -72,7 +73,8 @@ $.fn.disableWhileLoading = function(deferred, options) {
           .not(':disabled,[type=file]')
         $inputsToDisable.prop('disabled', true)
 
-        if (opts.noSpinner) {
+        // disabling for now - until spin.js works
+        if (true || opts.noSpinner) {
           $spinHolder = null
         } else {
           const $foundSpinHolder = $this.find('.spin_holder')

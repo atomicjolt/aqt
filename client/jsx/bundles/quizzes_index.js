@@ -21,10 +21,10 @@ import $ from 'jquery'
 import _ from 'lodash'
 import Backbone from 'Backbone'
 import I18n from '../../mocks/i18n'
-// import QuizItemGroupView from 'compiled/views/quizzes/QuizItemGroupView'
+import QuizItemGroupView from '../../coffeescripts/views/quizzes/QuizItemGroupView'
 import NoQuizzesView from '../../coffeescripts/views/quizzes/NoQuizzesView'
 import IndexView from '../../coffeescripts/views/quizzes/IndexView'
-// import QuizCollection from 'compiled/collections/QuizCollection'
+import QuizCollection from '../../coffeescripts/collections/QuizCollection'
 // import QuizOverrideLoader from 'compiled/models/QuizOverrideLoader'
 // import vddTooltip from 'compiled/util/vddTooltip'
 // disabling for now
@@ -46,21 +46,21 @@ const QuizzesIndexRouter = Backbone.Router.extend({
     this.allQuizzes = ENV.QUIZZES
 
     this.quizzes = {
-      // assignment: this.createQuizItemGroupView(
-      //   this.allQuizzes.assignment,
-      //   this.translations.assignmentQuizzes,
-      //   'assignment'
-      // ),
-      // open: this.createQuizItemGroupView(
-      //   this.allQuizzes.open,
-      //   this.translations.practiceQuizzes,
-      //   'open'
-      // ),
-      // surveys: this.createQuizItemGroupView(
-      //   this.allQuizzes.surveys,
-      //   this.translations.surveys,
-      //   'surveys'
-      // ),
+      assignment: this.createQuizItemGroupView(
+        this.allQuizzes.assignment,
+        this.translations.assignmentQuizzes,
+        'assignment'
+      ),
+      open: this.createQuizItemGroupView(
+        this.allQuizzes.open,
+        this.translations.practiceQuizzes,
+        'open'
+      ),
+      surveys: this.createQuizItemGroupView(
+        this.allQuizzes.surveys,
+        this.translations.surveys,
+        'surveys'
+      ),
       noQuizzes: new NoQuizzesView()
     }
   },

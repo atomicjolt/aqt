@@ -114,6 +114,7 @@
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.2",
     "superagent": "^5.2.1",
+    "timezone": "https://registry.npmjs.org/@brentburgoyne/timezone/-/timezone-1.0.24.tgz",
     "uuid": "^3.3.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
