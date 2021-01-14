@@ -6,7 +6,9 @@
     </script>
   </head>
   <body>
-    <%= yield %>
+    <div id="content" class="ic-Layout-contentMain" role="main">
+      <%= yield %>
+    </div>
 
     <%- js_bundles.each do |bundle, _plugin, *| %>
       <%= javascript_packs_with_chunks_tag bundle.to_s %>

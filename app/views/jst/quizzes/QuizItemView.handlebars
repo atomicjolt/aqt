@@ -150,7 +150,8 @@
                   <a href="#" class="icon-duplicate quiz-copy-to" role="menuitem" title="{{#t}}Copy Quiz to Course{{/t}}">{{#t}}Copy to...{{/t}}</a>
                 </li>
               {{/if}}
-              {{#if can_update}}{{>ExternalTools/external_tools_menu quiz_menu_tools}}{{/if}}
+              {{!-- disabling for now --}}
+              {{#if can_update}}{{!>ExternalTools/external_tools_menu quiz_menu_tools}}{{/if}}
             </ul>
           </div>
         </div>

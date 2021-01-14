@@ -8,6 +8,7 @@ app/coffeescripts/backbone-ext/Model/errors.js release/2020-11-18.29
 app/coffeescripts/backbone-ext/View.coffee release/2020-11-18.29
 app/coffeescripts/behaviors/authenticity_token.js release/2020-11-18.29
 app/coffeescripts/collections/QuizCollection.js release/2020-11-18.29
+app/coffeescripts/handlebars_helpers.coffee release/2020-11-18.29
 app/coffeescripts/jquery.rails_flash_notifications.js release/2020-11-18.29
 app/coffeescripts/legacyCoffeesScriptHelpers.js release/2020-11-18.29
 app/coffeescripts/models/DateGroup.js release/2020-11-18.29

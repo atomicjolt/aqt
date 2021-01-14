@@ -37,7 +37,8 @@ environment.loaders.append('coffeescript', coffeeLoader);
 environment.config.merge({resolve: {alias: {
   Backbone: path.resolve(__dirname, '../../public/javascripts/Backbone.js'),
   jst: handlebarsPath,
-  i18n: path.resolve(__dirname, '../../client/mocks/i18n.js')
+  i18n: path.resolve(__dirname, '../../client/mocks/i18n.js'),
+  i18nObj: path.resolve(__dirname, '../../client/mocks/i18nObj.js')
 }}})
 
 module.exports = environment

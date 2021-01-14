@@ -25,6 +25,7 @@ import QuizItemGroupView from '../../coffeescripts/views/quizzes/QuizItemGroupVi
 import NoQuizzesView from '../../coffeescripts/views/quizzes/NoQuizzesView'
 import IndexView from '../../coffeescripts/views/quizzes/IndexView'
 import QuizCollection from '../../coffeescripts/collections/QuizCollection'
+import '../../coffeescripts/handlebars_helpers'
 // import QuizOverrideLoader from 'compiled/models/QuizOverrideLoader'
 // import vddTooltip from 'compiled/util/vddTooltip'
 // disabling for now
