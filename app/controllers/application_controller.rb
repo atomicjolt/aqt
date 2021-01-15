@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   attr_accessor :active_tab
 
   def require_context
-    @context = CanvasCourse.find_by(lms_course_id: params[:course_id])
+    @context = Course.find(params[:course_id])
   end
 
   def named_context_url(_context, _name, *opts)

@@ -18,6 +18,8 @@
 
 class Quizzes::QuizzesController < ApplicationController
   layout 'canvas'
+  # TODO I'm not sure this is valid, should be populated in body but isn't
+  skip_before_action :verify_authenticity_token
 
   include ApplicationHelper
   include Api::V1::Quiz
@@ -38,6 +40,7 @@ class Quizzes::QuizzesController < ApplicationController
   attr_reader :lock_results_if_needed
 
   before_action :require_context
+  # GOT HERE
   before_action :rce_js_env, only: [:show, :new, :edit]
 
   add_crumb(proc { t('#crumbs.quizzes', "Quizzes") }) { |c| c.send :named_context_url, c.instance_variable_get("@context"), :context_quizzes_url }
@@ -115,7 +118,7 @@ class Quizzes::QuizzesController < ApplicationController
 
           # disabling for now - whole block
           # new_assignment_url: new_polymorphic_url([@context, :assignment]),
-          # new_quiz_url: context_url(@context, :context_quizzes_new_url, :fresh => 1),
+          new_quiz_url: context_url(@context, :context_quizzes_new_url, :fresh => 1),
           # new_quizzes_selection: api_v1_course_new_quizzes_selection_update_url(@context),
           # question_banks_url: context_url(@context, :context_question_banks_url),
           # assignment_overrides: api_v1_course_quiz_assignment_overrides_url(@context),
@@ -123,7 +126,7 @@ class Quizzes::QuizzesController < ApplicationController
 
           # BEGIN - REPLACING WITH THIS
           new_assignment_url: course_quizzes_url(@context),
-          new_quiz_url: course_quizzes_url(@context),
+          # new_quiz_url: course_quizzes_url(@context),
           new_quizzes_selection: course_quizzes_url(@context),
           question_banks_url: course_quizzes_url(@context),
           assignment_overrides: course_quizzes_url(@context),
@@ -158,9 +161,7 @@ class Quizzes::QuizzesController < ApplicationController
         :SIS_INTEGRATION_SETTINGS_ENABLED => sis_integration_settings_enabled,
         :NEW_QUIZZES_SELECTED => quiz_engine_selection
       }
-      # disabling for now - reference to Course switched to CanvasCourse
-      # if @context.is_a?(Course) && @context.grants_right?(@current_user, session, :read)
-      if @context.is_a?(CanvasCourse) && @context.grants_right?(@current_user, session, :read)
+      if @context.is_a?(Course) && @context.grants_right?(@current_user, session, :read)
         hash[:COURSE_ID] = @context.id.to_s
       end
       js_env(hash)

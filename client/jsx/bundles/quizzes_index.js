@@ -112,6 +112,8 @@ const QuizzesIndexRouter = Backbone.Router.extend({
   },
 
   shouldLoadOverrides() {
+    return false
+    // disabling for now
     return true
   }
 })
@@ -120,6 +122,6 @@ const QuizzesIndexRouter = Backbone.Router.extend({
 const router = new QuizzesIndexRouter()
 Backbone.history.start()
 
-vddTooltip()
 // disabling for now
+// vddTooltip()
 // monitorLtiMessages()

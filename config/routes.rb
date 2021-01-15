@@ -78,6 +78,7 @@ Rails.application.routes.draw do
 
   # canvas routes
   resources :courses do
+    post 'quizzes/new' => 'quizzes/quizzes#new' # use POST instead of GET (not idempotent)
     resources :quizzes, controller: "quizzes/quizzes", except: :new
   end
 end

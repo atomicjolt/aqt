@@ -296,6 +296,15 @@ ALTER SEQUENCE public.canvas_courses_id_seq OWNED BY public.canvas_courses.id;
 
 
 --
+-- Name: courses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.courses (
+    id bigint NOT NULL
+);
+
+
+--
 -- Name: ims_exports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1173,6 +1182,14 @@ ALTER TABLE ONLY public.canvas_courses
 
 
 --
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.courses
+    ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: ims_exports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1701,6 +1718,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200624153201'),
 ('20200914195556'),
 ('20201217183552'),
-('20201218171531');
+('20201218171531'),
+('20210115052042');
 
 
