@@ -21,10 +21,6 @@ class ApplicationController < ActionController::Base
     @context = Course.find(params[:course_id])
   end
 
-  def named_context_url(_context, _name, *opts)
-    course_quizzes_url *opts
-  end
-
   # obviously this will need to be addressed
   def authorized_action(_object, _actor, _rights)
     true
@@ -49,6 +45,9 @@ class ApplicationController < ActionController::Base
   def conditional_release_js_env(_assignment = nil, includes: []); end
 
   def log_asset_access(_asset, _asset_category, _asset_group=nil, _level=nil, _membership_type=nil, overwrite:true, context: nil)
+  end
+
+  def rce_js_env
   end
   # END - faked from canvas
 
@@ -237,7 +236,27 @@ class ApplicationController < ActionController::Base
   end
   helper_method :render_js_env
 
-
+  # used to generate context-specific urls without having to
+  # check which type of context it is everywhere
+  def named_context_url(context, name, *opts)
+    # disabling for now
+    if false # context.is_a?(UserProfile)
+      name = name.to_s.sub(/context/, "profile")
+    else
+      klass = context.class.base_class
+      name = name.to_s.sub(/context/, klass.name.underscore)
+      opts.unshift(context)
+    end
+    opts.push({}) unless opts[-1].is_a?(Hash)
+    include_host = opts[-1].delete(:include_host)
+    unless include_host
+      # rubocop:disable Style/RescueModifier
+      opts[-1][:host] = context.host_name rescue nil
+      # rubocop:enable Style/RescueModifier
+      opts[-1][:only_path] = true unless name.end_with?("_path")
+    end
+    self.send name, *opts
+  end
   # END - real from canvas
 
   protected

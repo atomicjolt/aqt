@@ -55,7 +55,7 @@ class Quizzes::Quiz < ActiveRecord::Base
   has_many :quiz_student_visibilities
 
   # disabling for now - whole block
-  # belongs_to :context, polymorphic: [:course]
+  belongs_to :context, polymorphic: [:course]
   # belongs_to :assignment
   # belongs_to :assignment_group
   # belongs_to :root_account, class_name: 'Account'
