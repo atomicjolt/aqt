@@ -50,7 +50,7 @@ gem "apartment-activejob-que"
 gem "que"
 
 # Errors
-gem "rollbar"
+# gem "rollbar"
 
 # Used for deploying to Heroku. Can be removed if not deploying to Heroku.
 gem "heroku_secrets", git: "https://github.com/alexpeattie/heroku_secrets.git"
@@ -150,6 +150,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "active_model-better_errors", "1.6.7", require: "active_model/better_errors"
 gem "guardrail", "2.0.0"
 gem "i18nliner", "0.1.2"
+gem 'active_model_serializers', '0.9.0alpha1',
+  github: 'rails-api/active_model_serializers', ref: '61882e1e4127facfe92e49057aec71edbe981829'
 
 path "gems" do
   gem "canvas_crummy"

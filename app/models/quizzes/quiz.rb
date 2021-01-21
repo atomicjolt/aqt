@@ -36,6 +36,7 @@ class Quizzes::Quiz < ActiveRecord::Base
   # include ContextModuleItem
   # disabling for now
   # include DatesOverridable
+  include AjDatesOverridable
   include SearchTermHelper
   # disabling for now
   # include Plannable
@@ -57,6 +58,7 @@ class Quizzes::Quiz < ActiveRecord::Base
   # disabling for now - whole block
   belongs_to :context, polymorphic: [:course]
   # belongs_to :assignment
+  def assignment; end
   # belongs_to :assignment_group
   # belongs_to :root_account, class_name: 'Account'
 
@@ -1037,6 +1039,8 @@ class Quizzes::Quiz < ActiveRecord::Base
   end
 
   def has_student_submissions?
+    # disabling for now
+    return false
     self.quiz_submissions.not_settings_only.where("user_id IS NOT NULL").exists?
   end
 
@@ -1377,6 +1381,8 @@ class Quizzes::Quiz < ActiveRecord::Base
   end
 
   def current_quiz_question_regrades
+    # disabling for now
+    return []
     current_regrade ? current_regrade.quiz_question_regrades : []
   end
 

@@ -40,7 +40,6 @@ class Quizzes::QuizzesController < ApplicationController
   attr_reader :lock_results_if_needed
 
   before_action :require_context
-  # GOT HERE
   before_action :rce_js_env, only: [:show, :new, :edit]
 
   add_crumb(proc { t('#crumbs.quizzes', "Quizzes") }) { |c| c.send :named_context_url, c.instance_variable_get("@context"), :context_quizzes_url }
@@ -321,7 +320,8 @@ class Quizzes::QuizzesController < ApplicationController
       @quiz.due_at = params[:due_at] if params[:due_at]
       @quiz.assignment_group_id = params[:assignment_group_id] if params[:assignment_group_id]
 
-      student_ids = @context.student_ids
+      # disabling for now. it's unused
+      # student_ids = @context.student_ids
       @banks_hash = get_banks(@quiz)
 
       if @has_student_submissions = @quiz.has_student_submissions?
@@ -331,16 +331,19 @@ class Quizzes::QuizzesController < ApplicationController
       regrade_options = Hash[@quiz.current_quiz_question_regrades.map do |qqr|
         [qqr.quiz_question_id, qqr.regrade_option]
       end]
-      sections = @context.course_sections.active
+      # disabling for now
+      # sections = @context.course_sections.active
+      sections = []
 
       max_name_length_required_for_account = AssignmentUtil.name_length_required_for_account?(@context)
       max_name_length = AssignmentUtil.assignment_max_name_length(@context)
 
       hash = {
         :ASSIGNMENT_ID => @assignment.present? ? @assignment.id : nil,
-        :ASSIGNMENT_OVERRIDES => assignment_overrides_json(@quiz.overrides_for(@current_user,
-                                                           ensure_set_not_empty: true),
-                                                           @current_user),
+        # :ASSIGNMENT_OVERRIDES => assignment_overrides_json(@quiz.overrides_for(@current_user,
+        #                                                    ensure_set_not_empty: true),
+        #                                                    @current_user),
+        :ASSIGNMENT_OVERRIDES => {},
         :DUE_DATE_REQUIRED_FOR_ACCOUNT => AssignmentUtil.due_date_required_for_account?(@context),
         :QUIZ => quiz_json(@quiz, @context, @current_user, session),
         :SECTION_LIST => sections.map { |section|
@@ -818,6 +821,8 @@ class Quizzes::QuizzesController < ApplicationController
 
   def get_banks(quiz)
     banks_hash = {}
+    # disabling for now
+    return banks_hash
     bank_ids = quiz.quiz_groups.map(&:assessment_question_bank_id)
     unless bank_ids.empty?
       banks_hash = AssessmentQuestionBank.active.where(id: bank_ids).index_by(&:id)
