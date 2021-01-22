@@ -17,8 +17,8 @@
 
 module Quizzes
   class QuizSerializer < Canvas::APISerializer
-    include LockedSerializer
-    include PermissionsSerializer
+    # include LockedSerializer
+    # include PermissionsSerializer
 
     root :quiz
 
