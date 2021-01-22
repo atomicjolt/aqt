@@ -20,6 +20,7 @@ class LtiLaunchesController < ApplicationController
     end
 
     setup_lti_response
+    redirect_to(course_quizzes_url(123))
   end
 
   def show
